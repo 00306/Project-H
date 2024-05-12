@@ -8,9 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    let authService: AuthService
+        
+        init(authService: AuthService = AuthManager.shared) {
+            self.authService = authService
+        }
+    
     var body: some View {
-        VStack {
-            LoginView()
+        Group {
+            if authService.authenticationState == .authenticated {
+                MainView()
+            } else {
+                LoginView()
+            }
         }
     }
 }
