@@ -12,11 +12,17 @@ class LoginViewModel: ObservableObject {
     @Published var password = ""
     @Published var errorMessage = ""
     
+    let authService: AuthService
+    
+    init(authService: AuthService = AuthManager.shared) {
+        self.authService = authService
+    }
+    
     func login() async {
-        await AuthManager.shared.signIn(email: email, password: password)
+        await authService.signIn(email: email, password: password)
     }
     
     func signUp() async {
-        await AuthManager.shared.signUp(email: email, password: password)
+        await authService.signUp(email: email, password: password)
     }
 }
