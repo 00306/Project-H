@@ -6,7 +6,7 @@
 //
 
 import FirebaseAuth
-import Foundation
+import Observation
 
 enum AuthError: Error {
     case userNotFound
@@ -18,6 +18,9 @@ enum AuthenticationState {
     case authenticating
     case authenticated
 }
+
+@Observable
+class AuthManager: AuthService {
     static let shared = AuthManager()
     let auth = Auth.auth()
     var user: User? = nil
@@ -28,6 +31,7 @@ enum AuthenticationState {
     init() {
         registerAuthStateHandler()
     }
+    
     func registerAuthStateHandler() {
         if authStateHandle == nil {
             authStateHandle = auth.addStateDidChangeListener({ auth, user in
