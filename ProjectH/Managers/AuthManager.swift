@@ -34,5 +34,13 @@ class AuthManager {
             print(error)
         }
     }
+    
+    func signOut() {
+        do {
+            try auth.signOut()
+        } catch {
+            print(error)
+        }
+    }
 }
 
