@@ -13,10 +13,29 @@ enum AuthError: Error {
     case wrongPassword
 }
 
-class AuthManager {
+enum AuthenticationState {
+    case unauthenticated
+    case authenticating
+    case authenticated
+}
     static let shared = AuthManager()
     let auth = Auth.auth()
     var user: User? = nil
+    var authenticationState: AuthenticationState = .unauthenticated
+    
+    private var authStateHandle: AuthStateDidChangeListenerHandle?
+    
+    init() {
+        registerAuthStateHandler()
+    }
+    func registerAuthStateHandler() {
+        if authStateHandle == nil {
+            authStateHandle = auth.addStateDidChangeListener({ auth, user in
+                self.user = user
+                self.authenticationState = user == nil ? .unauthenticated : .authenticated
+            })
+        }
+    }
     
     func signIn(email: String, password: String) async {
         do {
