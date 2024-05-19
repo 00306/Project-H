@@ -10,9 +10,8 @@ import Foundation
 import Observation
 
 
-@Observable
-class MainViewModel {
-    var hackathons: [Hackathon] = []
+class MainViewModel: ObservableObject {
+    @Published var hackathons: [Hackathon] = []
     private var cancellables = Set<AnyCancellable>()
     private var firestoreManager = FirestoreManager()
     
@@ -30,6 +29,21 @@ class MainViewModel {
                 self.hackathons = hackathons
             }
             .store(in: &cancellables)
-
+    }
+    
+    func updateHackathon(_ hackathon: Hackathon) {
+        firestoreManager.update(hackathon)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    print("Update successful")
+                case .failure(let error):
+                    print(error)
+                }
+            } receiveValue: { _ in
+                
+            }
+            .store(in: &cancellables)
     }
 }
