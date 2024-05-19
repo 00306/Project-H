@@ -35,9 +35,7 @@ struct LoginView: View {
     }
     private var loginButton: some View {
         Button {
-            Task {
-                await loginViewModel.login()
-            }
+            loginViewModel.login()
         } label: {
             RoundedRectangle(cornerRadius: 16)
                 .frame(height: 60)
@@ -51,9 +49,7 @@ struct LoginView: View {
     }
     private var signUpButton: some View {
         Button {
-            Task {
-                await loginViewModel.signUp()
-            }
+            loginViewModel.signUp()
         } label: {
             RoundedRectangle(cornerRadius: 16)
                 .frame(height: 60)
