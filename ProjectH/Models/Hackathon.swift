@@ -6,9 +6,12 @@
 //
 
 import FirebaseFirestore
+import Observation
 
 struct Hackathon: Identifiable, Codable, Hashable {
     @DocumentID var id: String?
-    var name: String
-    var description: String
+    let name: String
+    let description: String
+    var bookmarks: Int
+    let imageUrl: String
 }
