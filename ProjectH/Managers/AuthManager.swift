@@ -5,8 +5,9 @@
 //  Created by 송지혁 on 5/11/24.
 //
 
+import Combine
 import FirebaseAuth
-import Observation
+import FirebaseAuthCombineSwift
 
 enum AuthError: Error {
     case userNotFound
@@ -19,12 +20,11 @@ enum AuthenticationState {
     case authenticated
 }
 
-@Observable
-class AuthManager: AuthService {
+class AuthManager: AuthService, ObservableObject {
     static let shared = AuthManager()
     let auth = Auth.auth()
-    var user: User? = nil
-    var authenticationState: AuthenticationState = .unauthenticated
+    @Published var user: User? = nil
+    @Published var authenticationState: AuthenticationState = .unauthenticated
     
     private var authStateHandle: AuthStateDidChangeListenerHandle?
     
@@ -41,21 +41,20 @@ class AuthManager: AuthService {
         }
     }
     
-    func signIn(email: String, password: String) async {
-        do {
-            let result = try await auth.signIn(withEmail: email, password: password)
-            self.user = result.user
-        } catch {
-            print(error)
-        }
+    func signIn(email: String, password: String) -> AnyPublisher<AuthDataResult, Error> {
+        auth.signIn(withEmail: email, password: password)
+            .handleEvents(receiveOutput: { result in
+                self.user = result.user
+            })
+            .eraseToAnyPublisher()
     }
     
-    func signUp(email: String, password: String) async {
-        do {
-            let _ = try await auth.createUser(withEmail: email, password: password)
-        } catch {
-            print(error)
-        }
+    func signUp(email: String, password: String) -> AnyPublisher<AuthDataResult, Error> {
+        auth.createUser(withEmail: email, password: password)
+            .handleEvents(receiveOutput: { result in
+                self.user = result.user
+            })
+            .eraseToAnyPublisher()
     }
     
     func signOut() {
