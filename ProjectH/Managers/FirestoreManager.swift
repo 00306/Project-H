@@ -7,6 +7,7 @@
 
 
 import Combine
+import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreCombineSwift
 
@@ -22,12 +23,45 @@ class FirestoreManager {
             .eraseToAnyPublisher()
     }
     
-    func read() -> AnyPublisher<[Hackathon], Error> {
+    func readHackathons() -> AnyPublisher<[Hackathon], Error> {
         db.collection("Hackathons")
             .getDocuments()
             .map { snapshot in
                 snapshot.documents.compactMap { document in
                     try? document.data(as: Hackathon.self)
+                }
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    func readBookmarkIDs(_ user: UserInfo) -> AnyPublisher<Set<String>, Error> {
+        let uid = user.uid
+        
+        return db.collection("Users")
+            .document(uid)
+            .getDocument()
+            .map { documentSnapshot in
+                guard let bookmarks = documentSnapshot.data()?["bookmarks"] as? [String] else { fatalError() }
+                return Set(bookmarks)
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    func readBookmarks(_ user: UserInfo) -> AnyPublisher<[Hackathon], Error> {
+        let bookmarkList = Array(user.bookmarks)
+        if bookmarkList.isEmpty {
+            return Just([])
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        
+        return db.collection("Hackathons")
+            .whereField(FieldPath.documentID(), in: bookmarkList)
+            .getDocuments()
+            .map { querySnapshot in
+                querySnapshot.documents.compactMap { document in
+                    try? document.data(as: Hackathon.self)
+                    
                 }
             }
             .eraseToAnyPublisher()
