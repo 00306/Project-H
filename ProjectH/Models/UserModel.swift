@@ -31,10 +31,17 @@ final class UserModel: ObservableObject {
         authManager.$user
             .compactMap { $0?.toUserInfo() }
             .receive(on: DispatchQueue.main)
-            .assign(to: &$user)
+            .sink { completion in
+                
+            } receiveValue: { userInfo in
+                self.user = userInfo
+                self.fetchBookmarkIDs()
+            }
+            .store(in: &cancellables)
+
     }
     
-    func bookmark(_ hackathon: Hackathon) {
+    func addBookmark(_ hackathon: Hackathon) {
         guard let id = hackathon.id else { return }
         user?.bookmarks.insert(id)
         
@@ -52,12 +59,24 @@ final class UserModel: ObservableObject {
                 
             }
             .store(in: &cancellables)
+    }
+    
+    private func fetchBookmarkIDs() {
+        firestoreManager.readBookmarkIDs(user ?? UserInfo(uid: "", email: "", nickname: "", bookmarks: []))
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    print("SUCCESS")
+                case .failure(let error):
+                    print(error)
+                }
+            } receiveValue: { bookmarks in
+                self.user?.bookmarks = bookmarks
+            }
+            .store(in: &cancellables)
 
     }
+    
 }
 
-extension User {
-    func toUserInfo() -> UserInfo {
-        return UserInfo(uid: self.uid, email: self.email ?? "", nickname: self.displayName ?? "", bookmarks: [])
-    }
-}
