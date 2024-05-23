@@ -30,7 +30,7 @@ class LoginViewModel: ObservableObject {
                 case .finished:
                     print("Succeed")
                 case .failure(let error):
-                    print("error")
+                    print(error)
                 }
             } receiveValue: { result in
                 
