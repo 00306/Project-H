@@ -48,7 +48,7 @@ struct HackathonComponent: View {
         VStack {
             Button {
                 hackathon.bookmarks += 1
-                userModel.bookmark(hackathon)
+                userModel.addBookmark(hackathon)
                 mainViewModel.updateHackathon(hackathon)
             } label: {
                 Image(systemName: "bookmark")
