@@ -16,7 +16,7 @@ class MainViewModel: ObservableObject {
     private var firestoreManager = FirestoreManager()
     
     func fetchHackathons() {
-        firestoreManager.read()
+        firestoreManager.readHackathons()
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
