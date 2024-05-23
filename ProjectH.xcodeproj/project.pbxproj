@@ -21,6 +21,9 @@
 		0734076C2BEE7BA10014248F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0734076B2BEE7BA10014248F /* FirebaseAnalytics */; };
 		0734076E2BEE7BA10014248F /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0734076D2BEE7BA10014248F /* FirebaseAnalyticsSwift */; };
 		073407732BEE7BB30014248F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 073407722BEE7BB30014248F /* FirebaseFirestore */; };
+		073B38532BFC657E00244F2C /* User+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073B38522BFC657E00244F2C /* User+.swift */; };
+		073B38862BFF444400244F2C /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073B38852BFF444400244F2C /* BookmarkView.swift */; };
+		073B38882BFF445500244F2C /* BookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073B38872BFF445500244F2C /* BookmarkViewModel.swift */; };
 		075FD06B2BF784E000755786 /* HackathonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FD06A2BF784E000755786 /* HackathonComponent.swift */; };
 		075FD06D2BF7893F00755786 /* HackathonDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FD06C2BF7893F00755786 /* HackathonDetailView.swift */; };
 		075FD0712BF7BB3E00755786 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FD0702BF7BB3D00755786 /* UserInfo.swift */; };
@@ -45,6 +48,9 @@
 		073407632BEE78290014248F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		073407662BEE7AF20014248F /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		073407682BEE7B540014248F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		073B38522BFC657E00244F2C /* User+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+.swift"; sourceTree = "<group>"; };
+		073B38852BFF444400244F2C /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
+		073B38872BFF445500244F2C /* BookmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewModel.swift; sourceTree = "<group>"; };
 		075FD06A2BF784E000755786 /* HackathonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackathonComponent.swift; sourceTree = "<group>"; };
 		075FD06C2BF7893F00755786 /* HackathonDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackathonDetailView.swift; sourceTree = "<group>"; };
 		075FD0702BF7BB3D00755786 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -99,6 +105,7 @@
 		0734074E2BEE740F0014248F /* ProjectH */ = {
 			isa = PBXGroup;
 			children = (
+				073B38502BFC656900244F2C /* Extensions */,
 				072A62B02BF113A1009AE73B /* Protocols */,
 				073407682BEE7B540014248F /* GoogleService-Info.plist */,
 				073407652BEE7AE60014248F /* Managers */,
@@ -129,6 +136,7 @@
 				072A62AE2BF10BF8009AE73B /* MainView.swift */,
 				075FD06A2BF784E000755786 /* HackathonComponent.swift */,
 				075FD06C2BF7893F00755786 /* HackathonDetailView.swift */,
+				073B38852BFF444400244F2C /* BookmarkView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -138,6 +146,7 @@
 			children = (
 				076798A62BF71CEF0051BAF5 /* MainViewModel.swift */,
 				073407632BEE78290014248F /* LoginViewModel.swift */,
+				073B38872BFF445500244F2C /* BookmarkViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -166,6 +175,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		073B38502BFC656900244F2C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				073B38522BFC657E00244F2C /* User+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,6 +270,7 @@
 				073407642BEE78290014248F /* LoginViewModel.swift in Sources */,
 				076798AB2BF71D220051BAF5 /* FirestoreManager.swift in Sources */,
 				076798A92BF71D040051BAF5 /* Hackathon.swift in Sources */,
+				073B38882BFF445500244F2C /* BookmarkViewModel.swift in Sources */,
 				075FD06D2BF7893F00755786 /* HackathonDetailView.swift in Sources */,
 				072A62AF2BF10BF8009AE73B /* MainView.swift in Sources */,
 				073407602BEE75260014248F /* LoginView.swift in Sources */,
@@ -262,7 +280,9 @@
 				075FD0712BF7BB3E00755786 /* UserInfo.swift in Sources */,
 				073407502BEE740F0014248F /* ProjectHApp.swift in Sources */,
 				073407672BEE7AF20014248F /* AuthManager.swift in Sources */,
+				073B38532BFC657E00244F2C /* User+.swift in Sources */,
 				072A62B22BF113AF009AE73B /* AuthService.swift in Sources */,
+				073B38862BFF444400244F2C /* BookmarkView.swift in Sources */,
 				076798A72BF71CEF0051BAF5 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
