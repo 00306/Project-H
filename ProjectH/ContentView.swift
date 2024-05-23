@@ -13,7 +13,10 @@ struct ContentView: View {
     var body: some View {
         Group {
             if userModel.authenticationState == .authenticated {
-                MainView()
+                VStack {
+                    MainView()
+                    BookmarkView()
+                }
             } else {
                 LoginView()
             }
