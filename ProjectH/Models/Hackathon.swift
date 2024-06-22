@@ -52,3 +52,8 @@ class Hackathon: Identifiable, Codable, Hashable {
     public static func ==(lhs: Hackathon, rhs: Hackathon) -> Bool {
         return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
     }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(ObjectIdentifier(self))
+    }
+}
