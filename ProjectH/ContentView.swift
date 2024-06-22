@@ -11,11 +11,20 @@ struct ContentView: View {
     @EnvironmentObject var userModel: UserModel
     
     var body: some View {
-        Group {
+        NavigationStack {
             if userModel.authenticationState == .authenticated {
                 VStack {
                     MainView()
-                    BookmarkView()
+                    
+                    NavigationLink {
+                        BookmarkView()
+                    } label: {
+                        Text("Bookmark View")
+                            .foregroundStyle(.white)
+                            .bold()
+                    }
+
+                    
                 }
             } else {
                 LoginView()
