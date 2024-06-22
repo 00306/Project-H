@@ -6,10 +6,11 @@
 //
 
 import FirebaseFirestore
-import Observation
+import FirebaseFirestoreSwift
+import SwiftData
 
-struct Hackathon: Identifiable, Codable, Hashable {
-    @DocumentID var id: String?
+@Model
+class Hackathon: Identifiable, Codable, Hashable {
     let name: String
     let description: String
     var bookmarks: Int
