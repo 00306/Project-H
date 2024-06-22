@@ -17,3 +17,10 @@ class Hackathon: Identifiable, Codable, Hashable {
     var bookmarks: Int
     let imageUrl: String
 }
+    init(id: String? = nil, name: String, content: String, bookmarks: Int, imageUrl: String) {
+        self.id = id
+        self.name = name
+        self.content = content
+        self.bookmarks = bookmarks
+        self.imageUrl = imageUrl
+    }
