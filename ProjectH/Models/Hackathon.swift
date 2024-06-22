@@ -11,8 +11,9 @@ import SwiftData
 
 @Model
 class Hackathon: Identifiable, Codable, Hashable {
+    var id: String?
     let name: String
-    let description: String
+    let content: String
     var bookmarks: Int
     let imageUrl: String
 }
