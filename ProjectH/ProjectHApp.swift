@@ -11,6 +11,7 @@ import SwiftData
 
 @main
 struct ProjectHApp: App {
+//    @Environment(\.scenePhase) var scenePhase
     var modelContainer: ModelContainer = {
         let schema = Schema([Hackathon.self])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
@@ -30,6 +31,17 @@ struct ProjectHApp: App {
         WindowGroup {
             ContentView()
                 .modelContainer(modelContainer)
+                .environmentObject(UserModel(modelContext: modelContainer.mainContext))
+                
         }
+//        .onChange(of: scenePhase) { newScenePhase in
+//            switch newScenePhase {
+//            case .active:
+//            case .inactive:
+//            case .background:
+//            default:
+//                
+//            }
+//        }
     }
 }
