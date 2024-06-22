@@ -3,4 +3,68 @@
    uuid = "9E444F7F-426D-4D09-A0F7-20F09634C986"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "148BAF75-3972-4A1D-955F-DE3BB6670DB0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../var/folders/4b/zgv8mhs16ts48dg6d9j7xjf00000gq/T/swift-generated-sources/@__swiftmacro_8ProjectH9HackathonC2id18_PersistedPropertyfMa_.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1"
+            endingLineNumber = "1"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "96F8974E-592F-43DD-829D-35968503BD61"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../var/folders/4b/zgv8mhs16ts48dg6d9j7xjf00000gq/T/swift-generated-sources/@__swiftmacro_8ProjectH9Hackathon5ModelfMm_.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1"
+            endingLineNumber = "1"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "96F8974E-592F-43DD-829D-35968503BD61 - cd3d1992be0df63d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ProjectH.Hackathon.init(id: Swift.Optional&lt;Swift.String&gt;, name: Swift.String, content: Swift.String, bookmarks: Swift.Int, imageUrl: Swift.String) -&gt; ProjectH.Hackathon"
+                  moduleName = "ProjectH"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///var/folders/4b/zgv8mhs16ts48dg6d9j7xjf00000gq/T/swift-generated-sources/@__swiftmacro_8ProjectH9Hackathon5ModelfMm_.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "2"
+                  endingLineNumber = "2">
+               </Location>
+               <Location
+                  uuid = "96F8974E-592F-43DD-829D-35968503BD61 - 99027726ba2ddd8d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ProjectH.Hackathon.init(from: Swift.Decoder) throws -&gt; ProjectH.Hackathon"
+                  moduleName = "ProjectH"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///var/folders/4b/zgv8mhs16ts48dg6d9j7xjf00000gq/T/swift-generated-sources/@__swiftmacro_8ProjectH9Hackathon5ModelfMm_.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "2"
+                  endingLineNumber = "2">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
