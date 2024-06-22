@@ -9,21 +9,26 @@ import SwiftUI
 
 struct BookmarkView: View {
     @EnvironmentObject var userModel: UserModel
-    @StateObject var bookmarkViewModel = BookmarkViewModel()
+//    @StateObject var bookmarkViewModel = BookmarkViewModel()
     
     var body: some View {
         VStack {
-            ForEach(bookmarkViewModel.bookmarks) { bookmark in
+            Text("bookmark view")
+                .onTapGesture {
+                    print(userModel.bookmarks)
+                }
+            
+            ForEach(userModel.bookmarks) { bookmark in
                 Text(bookmark.name)
-                Text(bookmark.description)
-                Text(bookmark.imageUrl)
+                Text(bookmark.content)
+                AsyncImage(url: URL(string: bookmark.imageUrl))
             }
         }
-        .onChange(of: userModel.user, { oldUser, newUser in
-            if let user = newUser {
-                bookmarkViewModel.fetchBookmarks(user)
-            }
-        })
+//        .onChange(of: userModel.user, { oldUser, newUser in
+//            if let user = newUser {
+//                bookmarkViewModel.fetchBookmarks(user)
+//            }
+//        })
     }
 }
 
