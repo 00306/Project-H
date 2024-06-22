@@ -41,13 +41,17 @@ struct HackathonComponent: View {
             .foregroundStyle(.black)
     }
     private var description: some View {
-        Text(hackathon.description)
+        Text(hackathon.content)
             .foregroundStyle(.black)
     }
     private var bookmarks: some View {
         VStack {
             Button {
                 hackathon.bookmarks += 1
+                
+                // SwiftData
+                userModel.update(bookmark: hackathon)
+                
                 userModel.addBookmark(hackathon)
                 mainViewModel.updateHackathon(hackathon)
             } label: {
