@@ -11,7 +11,7 @@ struct MainView: View {
     let authService: AuthService
     @StateObject var mainViewModel = MainViewModel()
     
-    init(authService: AuthService = AuthManager.shared) {
+    init(authService: AuthService = FirebaseAuthService.shared) {
         self.authService = authService
     }
     

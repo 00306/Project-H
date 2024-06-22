@@ -20,8 +20,8 @@ enum AuthenticationState {
     case authenticated
 }
 
-class AuthManager: AuthService, ObservableObject {
-    static let shared = AuthManager()
+class FirebaseAuthService: AuthService, ObservableObject {
+    static let shared = FirebaseAuthService()
     let auth = Auth.auth()
     @Published var user: User? = nil
     @Published var authenticationState: AuthenticationState = .unauthenticated
