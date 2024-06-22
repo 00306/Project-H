@@ -49,3 +49,6 @@ class Hackathon: Identifiable, Codable, Hashable {
         try container.encode(imageUrl, forKey: .imageUrl)
         
     }
+    public static func ==(lhs: Hackathon, rhs: Hackathon) -> Bool {
+        return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
+    }
