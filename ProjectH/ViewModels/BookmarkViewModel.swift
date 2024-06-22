@@ -11,10 +11,10 @@ import Foundation
 class BookmarkViewModel: ObservableObject {
     @Published var bookmarks: [Hackathon] = []
     
-    let firestoreManager: FirestoreManager
+    let firestoreManager: FirestoreService
     var cancellables = Set<AnyCancellable>()
     
-    init(firestoreManager: FirestoreManager = FirestoreManager.shared) {
+    init(firestoreManager: FirestoreService = FirestoreService.shared) {
         self.firestoreManager = firestoreManager
     }
     
@@ -32,5 +32,4 @@ class BookmarkViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-    
 }

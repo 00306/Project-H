@@ -13,10 +13,10 @@ import Observation
 class MainViewModel: ObservableObject {
     @Published var hackathons: [Hackathon] = []
     private var cancellables = Set<AnyCancellable>()
-    private var firestoreManager = FirestoreManager()
+    private var firestoreService = FirestoreService()
     
     func fetchHackathons() {
-        firestoreManager.readHackathons()
+        firestoreService.readHackathons()
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
@@ -27,12 +27,13 @@ class MainViewModel: ObservableObject {
                 }
             } receiveValue: { hackathons in
                 self.hackathons = hackathons
+                print("Success", hackathons)
             }
             .store(in: &cancellables)
     }
     
     func updateHackathon(_ hackathon: Hackathon) {
-        firestoreManager.update(hackathon)
+        firestoreService.update(hackathon)
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {

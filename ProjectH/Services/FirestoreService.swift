@@ -11,8 +11,8 @@ import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreCombineSwift
 
-class FirestoreManager {
-    static let shared = FirestoreManager()
+class FirestoreService {
+    static let shared = FirestoreService()
     let db = Firestore.firestore()
     private var cancellables = Set<AnyCancellable>()
     
@@ -27,8 +27,16 @@ class FirestoreManager {
         db.collection("Hackathons")
             .getDocuments()
             .map { snapshot in
-                snapshot.documents.compactMap { document in
-                    try? document.data(as: Hackathon.self)
+                return snapshot.documents.compactMap { document in
+                    var hackathon: Hackathon?
+                    do {
+                        hackathon = try document.data(as: Hackathon.self)
+                        hackathon?.id = document.documentID
+                    } catch {
+                        print("Error decoding document: \(error)")
+                    }
+                    return hackathon
+
                 }
             }
             .eraseToAnyPublisher()

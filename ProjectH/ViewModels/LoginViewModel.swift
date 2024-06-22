@@ -15,9 +15,9 @@ class LoginViewModel: ObservableObject {
     
     let authService: AuthService
     private var cancellables = Set<AnyCancellable>()
-    private var firestoreManager: FirestoreManager
+    private var firestoreManager: FirestoreService
     
-    init(firestoreManager: FirestoreManager = FirestoreManager.shared, authService: AuthService = AuthManager.shared) {
+    init(firestoreManager: FirestoreService = FirestoreService.shared, authService: AuthService = FirebaseAuthService.shared) {
         self.authService = authService
         self.firestoreManager = firestoreManager
     }
@@ -36,7 +36,6 @@ class LoginViewModel: ObservableObject {
                 
             }
             .store(in: &cancellables)
-
     }
     
     func signUp() {
