@@ -10,6 +10,7 @@ import SwiftUI
 struct MainView: View {
     let authService: AuthService
     @StateObject var mainViewModel = MainViewModel()
+    @EnvironmentObject var userModel: UserModel
     
     init(authService: AuthService = FirebaseAuthService.shared) {
         self.authService = authService
@@ -18,7 +19,9 @@ struct MainView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                hackathonlist
+                if let _ = userModel.user {
+                    hackathonlist
+                }
                 
                 Button("파이어스토어") {
                     mainViewModel.fetchHackathons()
@@ -32,11 +35,13 @@ struct MainView: View {
     }
     
     private var hackathonlist: some View {
-        ForEach($mainViewModel.hackathons) { $hackathon in
-            NavigationLink {
-                HackathonDetailView(hackathon: hackathon)
-            } label: {
-                HackathonComponent(hackathon: $hackathon, mainViewModel: mainViewModel)
+        LazyVStack {
+            ForEach($mainViewModel.hackathons) { $hackathon in
+                NavigationLink {
+                    HackathonDetailView(hackathon: hackathon)
+                } label: {
+                    HackathonComponent(hackathon: $hackathon, mainViewModel: mainViewModel)
+                }
             }
         }
     }
