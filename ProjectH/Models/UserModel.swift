@@ -29,8 +29,15 @@ final class UserModel: ObservableObject {
         fetchSwiftData()
     }
     
-    func update(bookmark: Hackathon) {
+    func add(bookmark: Hackathon) {
         modelContext.insert(bookmark)
+        user?.bookmarks.insert(bookmark.id!)
+        fetchSwiftData()
+    }
+    
+    func remove(bookmark: Hackathon) {
+        modelContext.delete(bookmark)
+        user?.bookmarks.subtract([bookmark.id!])
         fetchSwiftData()
     }
     
