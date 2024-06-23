@@ -47,4 +47,8 @@ class MainViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
+    
+    func isExistInBookmark(hackathon: Hackathon, bookmarks: [Hackathon]) -> Bool {
+        bookmarks.contains(hackathon)
+    }
 }
