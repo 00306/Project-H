@@ -12,6 +12,10 @@ struct HackathonComponent: View {
     @EnvironmentObject var userModel: UserModel
     @ObservedObject var mainViewModel: MainViewModel
     
+    var isBookmarked: Bool {
+        userModel.user!.bookmarks.contains(hackathon.id!)
+    }
+    
     var body: some View {
         HStack(alignment: .top) {
             VStack(alignment: .leading) {
@@ -47,15 +51,17 @@ struct HackathonComponent: View {
     private var bookmarks: some View {
         VStack {
             Button {
-                hackathon.bookmarks += 1
+                if isBookmarked {
+                    hackathon.bookmarks -= 1
+                    userModel.remove(bookmark: hackathon)
+                } else {
+                    hackathon.bookmarks += 1
+                    userModel.add(bookmark: hackathon)
+                }
                 
-                // SwiftData
-                userModel.update(bookmark: hackathon)
-                
-                userModel.addBookmark(hackathon)
-                mainViewModel.updateHackathon(hackathon)
+//                mainViewModel.updateHackathon(hackathon)
             } label: {
-                Image(systemName: "bookmark")
+                Image(systemName: isBookmarked ? "bookmark.fill" : "bookmark")
                     .padding(4)
                     .contentShape(Rectangle())
             }
