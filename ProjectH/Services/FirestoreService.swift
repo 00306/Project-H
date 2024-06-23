@@ -49,7 +49,7 @@ class FirestoreService {
             .document(uid)
             .getDocument()
             .map { documentSnapshot in
-                guard let bookmarks = documentSnapshot.data()?["bookmarks"] as? [String] else { fatalError() }
+                guard let bookmarks = documentSnapshot.data()?["bookmarks"] as? [String] else { return [] }
                 return Set(bookmarks)
             }
             .eraseToAnyPublisher()
@@ -86,6 +86,18 @@ class FirestoreService {
         db.collection("Users")
             .document(user.uid)
             .setData(from: user, merge: true)
+            .eraseToAnyPublisher()
+    }
+    
+    func updateBookmarks(user: UserInfo) -> AnyPublisher<Void, Error> {
+        let bookmarkIDs = user.bookmarks.map { $0 }
+        let updateData: [String: Any] = [
+            "bookmarks": bookmarkIDs
+        ]
+        
+        return db.collection("Users")
+            .document(user.uid)
+            .updateData(updateData)
             .eraseToAnyPublisher()
     }
 }
