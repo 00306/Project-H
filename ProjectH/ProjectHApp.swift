@@ -11,7 +11,8 @@ import SwiftData
 
 @main
 struct ProjectHApp: App {
-//    @Environment(\.scenePhase) var scenePhase
+    
+    @Environment(\.scenePhase) var scenePhase
     var modelContainer: ModelContainer = {
         let schema = Schema([Hackathon.self])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
@@ -23,25 +24,32 @@ struct ProjectHApp: App {
         }
     }()
     
+    let user: UserModel
+    
     init() {
         FirebaseApp.configure()
+        self.user = UserModel(modelContext: modelContainer.mainContext)
     }
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .modelContainer(modelContainer)
-                .environmentObject(UserModel(modelContext: modelContainer.mainContext))
+                .environmentObject(user)
                 
         }
-//        .onChange(of: scenePhase) { newScenePhase in
-//            switch newScenePhase {
-//            case .active:
-//            case .inactive:
-//            case .background:
-//            default:
-//                
-//            }
-//        }
+        .onChange(of: scenePhase) { newScenePhase in
+            switch newScenePhase {
+            case .active:
+                print("앱 Active")
+            case .inactive:
+                print("앱 inactive")
+            case .background:
+                print("앱 background")
+                user.uploadSwiftDataToFirebase()
+            default:
+                break
+            }
+        }
     }
 }

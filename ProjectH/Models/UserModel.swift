@@ -95,6 +95,22 @@ final class UserModel: ObservableObject {
             }
             .store(in: &cancellables)
 
+    func uploadSwiftDataToFirebase() {
+        guard let user = user else { return }
+        fetchSwiftData()
+        firestoreService.updateBookmarks(user: user)
+            .receive(on: DispatchQueue.global())
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    print("SUCCESS")
+                case .failure(let error):
+                    print(error)
+                }
+            } receiveValue: { _ in
+                
+            }
+            .store(in: &cancellables)
     }
     
 }
