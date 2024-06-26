@@ -5,6 +5,7 @@
 //  Created by 송지혁 on 5/11/24.
 //
 
+import Combine
 import Foundation
 
 class LoginViewModel: ObservableObject {
@@ -13,16 +14,62 @@ class LoginViewModel: ObservableObject {
     @Published var errorMessage = ""
     
     let authService: AuthService
+    private var cancellables = Set<AnyCancellable>()
+    private var firestoreManager: FirestoreService
     
-    init(authService: AuthService = AuthManager.shared) {
+    init(firestoreManager: FirestoreService = FirestoreService.shared, authService: AuthService = FirebaseAuthService.shared) {
         self.authService = authService
+        self.firestoreManager = firestoreManager
     }
     
-    func login() async {
-        await authService.signIn(email: email, password: password)
+    func login() {
+        authService.signIn(email: email, password: password)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    print("Succeed")
+                case .failure(let error):
+                    print(error)
+                }
+            } receiveValue: { result in
+                
+            }
+            .store(in: &cancellables)
     }
     
-    func signUp() async {
-        await authService.signUp(email: email, password: password)
+    func signUp() {
+        authService.signUp(email: email, password: password)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    print("Succeed")
+                case .failure(let error):
+                    print(error)
+                }
+            } receiveValue: { result in
+                let user = result.user
+                self.updateUserInfo(user: user.toUserInfo())
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func updateUserInfo(user: UserInfo) {
+        firestoreManager.create(user: user)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    print("FINIESHD")
+                case .failure(let error):
+                    print(error)
+                }
+                
+            } receiveValue: { _ in
+                print("Finish")
+            }
+            .store(in: &cancellables)
+
     }
 }

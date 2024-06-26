@@ -8,16 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
-    let authService: AuthService
-        
-        init(authService: AuthService = AuthManager.shared) {
-            self.authService = authService
-        }
+    @EnvironmentObject var userModel: UserModel
     
     var body: some View {
-        Group {
-            if authService.authenticationState == .authenticated {
-                MainView()
+        NavigationStack {
+            if userModel.authenticationState == .authenticated {
+                VStack {
+                    MainView()
+                    
+                    NavigationLink {
+                        BookmarkView()
+                    } label: {
+                        Text("Bookmark View")
+                            .foregroundStyle(.white)
+                            .bold()
+                    }
+
+                    
+                }
             } else {
                 LoginView()
             }

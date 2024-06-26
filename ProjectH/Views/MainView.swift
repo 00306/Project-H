@@ -9,26 +9,39 @@ import SwiftUI
 
 struct MainView: View {
     let authService: AuthService
-    let mainViewModel = MainViewModel()
+    @StateObject var mainViewModel = MainViewModel()
+    @EnvironmentObject var userModel: UserModel
     
-    init(authService: AuthService = AuthManager.shared) {
+    init(authService: AuthService = FirebaseAuthService.shared) {
         self.authService = authService
     }
     
     var body: some View {
-        VStack {
-            ForEach(mainViewModel.hackathons, id: \.self) { hackathon in
-                Text(hackathon.id!)
-                Text(hackathon.name)
-                Text(hackathon.description)
+        NavigationStack {
+            VStack {
+                if let _ = userModel.user {
+                    hackathonlist
+                }
+                
+                Button("파이어스토어") {
+                    mainViewModel.fetchHackathons()
+                }
+                
+                Button("로그아웃") {
+                    authService.signOut()
+                }
             }
-            
-            Button("파이어스토어") {
-                mainViewModel.fetchHackathons()
-            }
-            
-            Button("로그아웃") {
-                authService.signOut()
+        }
+    }
+    
+    private var hackathonlist: some View {
+        LazyVStack {
+            ForEach($mainViewModel.hackathons) { $hackathon in
+                NavigationLink {
+                    HackathonDetailView(hackathon: hackathon)
+                } label: {
+                    HackathonComponent(hackathon: $hackathon, mainViewModel: mainViewModel)
+                }
             }
         }
     }
