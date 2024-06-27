@@ -51,14 +51,7 @@ struct HackathonComponent: View {
     private var bookmarks: some View {
         VStack {
             Button {
-                if isBookmarked {
-                    hackathon.bookmarks -= 1
-                    userModel.remove(bookmark: hackathon)
-                } else {
-                    hackathon.bookmarks += 1
-                    userModel.add(bookmark: hackathon)
-                }
-                
+                isBookmarked ? userModel.remove(bookmark: hackathon) : userModel.add(bookmark: hackathon)
 //                mainViewModel.updateHackathon(hackathon)
             } label: {
                 Image(systemName: isBookmarked ? "bookmark.fill" : "bookmark")
@@ -66,7 +59,7 @@ struct HackathonComponent: View {
                     .contentShape(Rectangle())
             }
             
-            Text(hackathon.bookmarks.description)
+            Text(hackathon.hits.description)
                 .foregroundStyle(.black)
         }
     }
