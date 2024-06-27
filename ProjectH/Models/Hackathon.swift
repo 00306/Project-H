@@ -14,18 +14,18 @@ class Hackathon: Identifiable, Codable, Hashable {
     var id: String?
     let name: String
     let content: String
-    var bookmarks: Int
+    var hits: Int
     let imageUrl: String
     
     enum CodingKeys: CodingKey {
-        case id, name, content, bookmarks, imageUrl
+        case id, name, content, hits, imageUrl
     }
     
-    init(id: String? = nil, name: String, content: String, bookmarks: Int, imageUrl: String) {
+    init(id: String? = nil, name: String, content: String, hits: Int, imageUrl: String) {
         self.id = id
         self.name = name
         self.content = content
-        self.bookmarks = bookmarks
+        self.hits = hits
         self.imageUrl = imageUrl
     }
     
@@ -34,7 +34,7 @@ class Hackathon: Identifiable, Codable, Hashable {
         self.id = try? container.decode(String.self, forKey: .id)
         self.name = try container.decode(String.self, forKey: .name)
         self.content = try container.decode(String.self, forKey: .content)
-        self.bookmarks = try container.decode(Int.self, forKey: .bookmarks)
+        self.hits = try container.decode(Int.self, forKey: .hits)
         self.imageUrl = try container.decode(String.self, forKey: .imageUrl)
         
         
@@ -45,7 +45,7 @@ class Hackathon: Identifiable, Codable, Hashable {
         try container.encode(id, forKey: .id)
         try container.encode(name, forKey: .name)
         try container.encode(content, forKey: .content)
-        try container.encode(bookmarks, forKey: .bookmarks)
+        try container.encode(hits, forKey: .hits)
         try container.encode(imageUrl, forKey: .imageUrl)
         
     }

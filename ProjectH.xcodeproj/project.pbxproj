@@ -24,6 +24,7 @@
 		073B38532BFC657E00244F2C /* User+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073B38522BFC657E00244F2C /* User+.swift */; };
 		073B38862BFF444400244F2C /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073B38852BFF444400244F2C /* BookmarkView.swift */; };
 		073B38882BFF445500244F2C /* BookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073B38872BFF445500244F2C /* BookmarkViewModel.swift */; };
+		075704D22C2E1C3D00A8D3FA /* HackathonDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075704D12C2E1C3D00A8D3FA /* HackathonDetailViewModel.swift */; };
 		075FD06B2BF784E000755786 /* HackathonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FD06A2BF784E000755786 /* HackathonComponent.swift */; };
 		075FD06D2BF7893F00755786 /* HackathonDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FD06C2BF7893F00755786 /* HackathonDetailView.swift */; };
 		075FD0712BF7BB3E00755786 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075FD0702BF7BB3D00755786 /* UserInfo.swift */; };
@@ -51,6 +52,7 @@
 		073B38522BFC657E00244F2C /* User+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+.swift"; sourceTree = "<group>"; };
 		073B38852BFF444400244F2C /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
 		073B38872BFF445500244F2C /* BookmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewModel.swift; sourceTree = "<group>"; };
+		075704D12C2E1C3D00A8D3FA /* HackathonDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackathonDetailViewModel.swift; sourceTree = "<group>"; };
 		075FD06A2BF784E000755786 /* HackathonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackathonComponent.swift; sourceTree = "<group>"; };
 		075FD06C2BF7893F00755786 /* HackathonDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackathonDetailView.swift; sourceTree = "<group>"; };
 		075FD0702BF7BB3D00755786 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				076798A62BF71CEF0051BAF5 /* MainViewModel.swift */,
 				073407632BEE78290014248F /* LoginViewModel.swift */,
 				073B38872BFF445500244F2C /* BookmarkViewModel.swift */,
+				075704D12C2E1C3D00A8D3FA /* HackathonDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				073407642BEE78290014248F /* LoginViewModel.swift in Sources */,
+				075704D22C2E1C3D00A8D3FA /* HackathonDetailViewModel.swift in Sources */,
 				076798AB2BF71D220051BAF5 /* FirestoreService.swift in Sources */,
 				076798A92BF71D040051BAF5 /* Hackathon.swift in Sources */,
 				073B38882BFF445500244F2C /* BookmarkViewModel.swift in Sources */,
