@@ -38,7 +38,7 @@ struct MainView: View {
         LazyVStack {
             ForEach($mainViewModel.hackathons) { $hackathon in
                 NavigationLink {
-                    HackathonDetailView(hackathon: hackathon)
+                    HackathonDetailView(hackathonDetailViewModel: HackathonDetailViewModel(hackathon: hackathon))
                 } label: {
                     HackathonComponent(hackathon: $hackathon, mainViewModel: mainViewModel)
                 }
