@@ -8,9 +8,15 @@
 import SwiftUI
 
 struct HackathonDetailView: View {
-    let hackathon: Hackathon
+    @StateObject var hackathonDetailViewModel: HackathonDetailViewModel
+    
     
     var body: some View {
-        Text("hackathonDetailView")
+        VStack {
+            Text("hackathonDetailView")
+        }
+        .onAppear {
+            hackathonDetailViewModel.checkAndIncrementHits()
+        }
     }
 }
