@@ -38,12 +38,16 @@ struct MainView: View {
                 }
 
             }
+            .searchable(text: $mainViewModel.searchText, placement: .navigationBarDrawer(displayMode: .always))
+            .navigationTitle("해커톤")
+            
         }
+        
     }
     
     private var hackathonlist: some View {
         LazyVStack {
-            ForEach($mainViewModel.hackathons) { $hackathon in
+            ForEach($mainViewModel.searchedResult) { $hackathon in
                 NavigationLink {
                     HackathonDetailView(hackathonDetailViewModel: HackathonDetailViewModel(hackathon: hackathon))
                 } label: {
