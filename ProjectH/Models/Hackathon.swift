@@ -16,17 +16,29 @@ class Hackathon: Identifiable, Codable, Hashable {
     let content: String
     var hits: Int
     let imageUrl: String
-    
-    enum CodingKeys: CodingKey {
-        case id, name, content, hits, imageUrl
+    let startDate: Date
+    let endDate: Date
+    var duration: Int {
+        let calendar = Calendar.current
+        let start = calendar.startOfDay(for: startDate)
+        let end = calendar.startOfDay(for: endDate)
+        let components = calendar.dateComponents([.day], from: start, to: end)
+        
+        return components.day ?? 0
     }
     
-    init(id: String? = nil, name: String, content: String, hits: Int, imageUrl: String) {
+    enum CodingKeys: CodingKey {
+        case id, name, content, hits, imageUrl, startDate, endDate
+    }
+    
+    init(id: String? = nil, name: String, content: String, hits: Int, imageUrl: String, startDate: Date, endDate: Date) {
         self.id = id
         self.name = name
         self.content = content
         self.hits = hits
         self.imageUrl = imageUrl
+        self.startDate = startDate
+        self.endDate = endDate
     }
     
     required init(from decoder: Decoder) throws {
@@ -36,7 +48,8 @@ class Hackathon: Identifiable, Codable, Hashable {
         self.content = try container.decode(String.self, forKey: .content)
         self.hits = try container.decode(Int.self, forKey: .hits)
         self.imageUrl = try container.decode(String.self, forKey: .imageUrl)
-        
+        self.startDate = try container.decode(Date.self, forKey: .startDate)
+        self.endDate = try container.decode(Date.self, forKey: .endDate)
         
     }
     
@@ -47,6 +60,9 @@ class Hackathon: Identifiable, Codable, Hashable {
         try container.encode(content, forKey: .content)
         try container.encode(hits, forKey: .hits)
         try container.encode(imageUrl, forKey: .imageUrl)
+        try container.encode(startDate, forKey: .startDate)
+        try container.encode(endDate, forKey: .endDate)
+        
         
     }
     public static func ==(lhs: Hackathon, rhs: Hackathon) -> Bool {
