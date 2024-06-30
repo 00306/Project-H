@@ -10,7 +10,6 @@ import SwiftUI
 struct HackathonComponent: View {
     @Binding var hackathon: Hackathon
     @EnvironmentObject var userModel: UserModel
-    @ObservedObject var mainViewModel: MainViewModel
     
     var isBookmarked: Bool {
         userModel.user!.bookmarks.contains(hackathon.id!)
@@ -22,6 +21,7 @@ struct HackathonComponent: View {
                 title
                 description
                 bookmarks
+                dDay
             }
             Spacer()
             posterImage
@@ -59,8 +59,23 @@ struct HackathonComponent: View {
                     .contentShape(Rectangle())
             }
             
-            Text(hackathon.hits.description)
-                .foregroundStyle(.black)
+            HStack {
+                Text(hackathon.hits.description)
+                    .foregroundStyle(.black)
+            }
         }
+    }
+    
+    private var duration: String {
+        hackathon.duration == 0 ? "day" : String(hackathon.duration)
+    }
+    
+    private var dDay: some View {
+        Text("D-\(duration)")
+            .padding()
+            .background {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(.cyan)
+            }
     }
 }
