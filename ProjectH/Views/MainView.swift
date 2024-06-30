@@ -30,6 +30,13 @@ struct MainView: View {
                 Button("로그아웃") {
                     authService.signOut()
                 }
+                
+                NavigationLink {
+                    BookmarkView()
+                } label: {
+                    Text("Go to Bookmark")
+                }
+
             }
         }
     }
@@ -40,7 +47,7 @@ struct MainView: View {
                 NavigationLink {
                     HackathonDetailView(hackathonDetailViewModel: HackathonDetailViewModel(hackathon: hackathon))
                 } label: {
-                    HackathonComponent(hackathon: $hackathon, mainViewModel: mainViewModel)
+                    HackathonComponent(hackathon: $hackathon)
                 }
             }
         }
